@@ -1,21 +1,18 @@
 import {
+	BaseBladeParams,
 	BaseInputParams,
-	BindingTarget,
-	CompositeConstraint,
-	createRangeConstraint,
-	createStepConstraint,
-	InputBindingPlugin,
+	BladeApi,
+	BladePlugin,
 	ParamsParsers,
 	parseParams,
 } from '@tweakpane/core';
 
-import {PluginController} from './controller';
+import {InfodumpController} from './controller';
 
-export interface PluginInputParams extends BaseInputParams {
-	max?: number;
-	min?: number;
-	step?: number;
-	view: 'dots';
+export interface InfodumpBladeParams extends BaseBladeParams {
+	lineCount?: number;
+	title: string;
+	view: 'placeholder';  // TODO change
 }
 
 // NOTE: You can see JSDoc comments of `InputBindingPlugin` for details about each property
@@ -25,6 +22,49 @@ export interface PluginInputParams extends BaseInputParams {
 // - converts `Ex` into `In` and holds it
 // - P is the type of the parsed parameters
 //
+export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
+	id: 'placeholder',
+
+	// type: The plugin type.
+	// - 'input': Input binding
+	// - 'monitor': Monitor binding
+	type: 'blade',
+
+	// This plugin template injects a compiled CSS by @rollup/plugin-replace
+	// See rollup.config.js for details
+	css: '__css__',
+
+	accept(params) {
+		const p = ParamsParsers;
+		const r = parseParams(params, {
+			lineCount: p.optional.number,
+			title: p.required.string,
+			view: p.required.constant('placeholder'),  // TODO change
+		});
+		return r ? {params: r} : null;
+	},
+	controller(args) {
+		return new InfodumpController(args.document, {
+			lineCount: args.params.lineCount ?? 1,
+			title: args.params.title,
+			viewProps: args.viewProps,
+		});
+	},
+	api(args) {
+		if (!(args.controller instanceof InfodumpController)) {
+			return null;
+		}
+		return new BladeApi(args.controller);
+	},
+};
+
+
+
+
+
+
+
+/*
 export const TemplateInputPlugin: InputBindingPlugin<
 	number,
 	number,
@@ -109,3 +149,4 @@ export const TemplateInputPlugin: InputBindingPlugin<
 		});
 	},
 };
+*/
