@@ -1,9 +1,10 @@
 # Tweakpane plugin template
-Plugin template of an input binding for [Tweakpane][tweakpane].
+Plugin template of an input binding for [Tweakpane][https://github.com/cocopon/tweakpane/].
 
 TODO obrien reference https://www.youtube.com/watch?v=XU-8Mh2iHEk
 TODO markdown styling not complete as my use case just involves basic text formatting - file an issue if you want more
 TODO re. markdown: recommend putting multiline into backtick strings, but any code snippets need escaping
+TODO heavily based on https://github.com/cocopon/tweakpane/blob/a4786be6dae7cad58dbbfe2f047ca097954c4f1f/packages/tweakpane/src/doc/ts/placeholder-plugin.ts as mentioned on https://github.com/cocopon/tweakpane/issues/397
 
 
 # For plugin developers
@@ -20,6 +21,7 @@ TODO: Delete this section before publishing your plugin.
   % npm start
   ```
 - Open `test/browser.html` to see the result.
+- Cutting a release: `npm run assets`.
 
 
 ## File structure
@@ -77,5 +79,3 @@ pane.addInput(params, 'prop', {
 });
 ```
 
-
-[tweakpane]: https://github.com/cocopon/tweakpane/
