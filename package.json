@@ -1,6 +1,6 @@
 {
   "name": "tweakpane-plugin-infodump",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Infodump plugin for Tweakpane, provides a text-displaying blade with basic Markdown support intended for long descriptions (i.e., infodumps)",
   "main": "dist/tweakpane-plugin-infodump.js",
   "types": "dist/types/index.d.ts",
