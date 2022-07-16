@@ -11,6 +11,8 @@ This implementation is heavily based on the [placeholder blade from the Tweakpan
 
 ### Browser
 
+Download the most recent release from [here](https://github.com/doersino/tweakpane-plugin-infodump/releases).
+
 ```html
 <script src="tweakpane.min.js"></script>
 <script src="tweakpane-plugin-infodump.min.js"></script>
@@ -25,7 +27,7 @@ This implementation is heavily based on the [placeholder blade from the Tweakpan
 
 ```js
 import {Pane} from 'tweakpane';
-import * as InfodumpPlugin from 'tweakpane-plugin-infodump';
+import * as InfodumpPlugin from 'doersino/tweakpane-plugin-infodump';
 
 const pane = new Pane();
 pane.registerPlugin(InfodumpPlugin);
@@ -51,7 +53,6 @@ I recommend using [backtick-delimited strings](https://developer.mozilla.org/en-
 
 
 ## Development
-
 
 ### Quick start
 
