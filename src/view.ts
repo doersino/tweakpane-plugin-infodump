@@ -1,5 +1,4 @@
 import {ClassName, View, ViewProps} from '@tweakpane/core';
-
 import {render} from 'slimdown-js';
 
 interface Config {
@@ -17,10 +16,7 @@ const classNameBorder = ClassName('indub');
 export class InfodumpView implements View {
 	public readonly element: HTMLElement;
 
-	constructor(
-		doc: Document,
-		config: Config,
-	) {
+	constructor(doc: Document, config: Config) {
 		this.element = doc.createElement('div');
 		this.element.classList.add(className());
 		if (config.border) {

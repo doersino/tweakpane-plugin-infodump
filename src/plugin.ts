@@ -1,6 +1,5 @@
 import {
 	BaseBladeParams,
-	BaseInputParams,
 	BladeApi,
 	BladePlugin,
 	ParamsParsers,
@@ -35,7 +34,6 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 	// See rollup.config.js for details
 	css: '__css__',
 
-	// TODO transfer more comments from below
 	accept(params) {
 		// Parse parameters object
 		const p = ParamsParsers;
