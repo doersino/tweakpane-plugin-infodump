@@ -10,8 +10,9 @@ import {
 import {InfodumpController} from './controller';
 
 export interface InfodumpBladeParams extends BaseBladeParams {
-	lineCount?: number;
-	title: string;
+	border?: boolean;
+	content: string;
+	markdown?: boolean;
 	view: 'infodump';
 }
 
@@ -34,22 +35,27 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 	// See rollup.config.js for details
 	css: '__css__',
 
+	// TODO transfer more comments from below
 	accept(params) {
 		const p = ParamsParsers;
 		const r = parseParams(params, {
-			lineCount: p.optional.number,
-			title: p.required.string,
+			border: p.optional.boolean,
+			content: p.required.string,
+			markdown: p.optional.boolean,
 			view: p.required.constant('infodump'),
 		});
 		return r ? {params: r} : null;
 	},
+
 	controller(args) {
 		return new InfodumpController(args.document, {
-			lineCount: args.params.lineCount ?? 1,
-			title: args.params.title,
+			border: args.params.border ?? false,
+			content: args.params.content,
+			markdown: args.params.markdown ?? false,
 			viewProps: args.viewProps,
 		});
 	},
+
 	api(args) {
 		if (!(args.controller instanceof InfodumpController)) {
 			return null;

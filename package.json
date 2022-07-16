@@ -1,10 +1,10 @@
 {
-  "name": "tweakpane-plugin-template",
-  "version": "0.0.0",
+  "name": "tweakpane-plugin-infodump",
+  "version": "0.1.0",
   "description": "Plugin template for Tweakpane",
-  "main": "dist/tweakpane-plugin-template.js",
+  "main": "dist/tweakpane-plugin-infodump.js",
   "types": "dist/types/index.d.ts",
-  "author": "cocopon",
+  "author": "Noah Doersing",
   "license": "MIT",
   "files": [
     "dist"
@@ -28,6 +28,9 @@
     "watch": "run-p watch:*",
     "watch:sass": "onchange --initial --kill \"src/sass/**/*.scss\" -- npm run build:dev",
     "watch:ts": "onchange --initial --kill \"src/**/*.ts\" -- rollup --config rollup.config.js"
+  },
+  "dependencies": {
+    "slimdown-js": "0.6.1"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2",

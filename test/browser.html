@@ -6,21 +6,68 @@
 </head>
 <body>
 	<script src="../node_modules/tweakpane/dist/tweakpane.js"></script>
-	<script src="../dist/tweakpane-plugin-template.js"></script>
+	<script src="../dist/tweakpane-plugin-infodump.js"></script>
 	<script>
-		const params = {
-			prop: 3,
-		};
 		const pane = new Tweakpane.Pane();
 
 		// Register plugin
-		pane.registerPlugin(TweakpaneTemplatePlugin);
+		pane.registerPlugin(TweakpaneInfodumpPlugin);
 
 		// TODO: Update parameters for your plugin
+		pane.addButton({title: "test", label: "Button!"});
 		pane.addBlade({
-			view: "placeholder",
-			title: "hello",
-			lineCount: 3
+			view: "infodump",
+			content: "She's *flower units* about the **lad** herself. Major, lark's true pepper. Let birds go further loose maybe. Shout easy play. Round the turbulent quick. Well, close the reverse harbor. Ankle try sound. Reset gleaming. Dinner to bug. When? Strike limits flame the dark true salt. Way link complete. Way link! Victory strike limits frosted wake. Simple hesitation!",
+			border: false,    // TODO default false? could also change to adminition-style stuff, with colors
+			markdown: true,  // TODO default false
+		});
+		pane.addBlade({
+			view: "infodump",
+			content: "Short text.",
+			border: true,    // TODO default false? could also change to adminition-style stuff, with colors
+			markdown: true,  // TODO default false
+		});
+		pane.addBlade({
+			view: "infodump",
+			content: "She's flower units about the lad herself. Major, lark's true pepper. Let birds go further loose maybe. Shout easy play. Round the turbulent quick. Well, close the reverse harbor. Ankle try sound. Reset gleaming. Dinner to bug. When? Strike limits flame the dark true salt. Way link complete. Way link! Victory strike limits frosted wake. Simple hesitation!",
+			border: true,    // TODO default false? could also change to adminition-style stuff, with colors
+			markdown: false,  // TODO default false
+		});
+		pane.addBlade({
+			view: "infodump",
+			content: `# A longer example
+
+And *now* [a link](http://www.google.com) to **follow** and [another](http://yahoo.com/).
+
+* One
+* Two
+* Three
+
+## Subhead
+
+One **two** three **four** five.
+
+One __two__ three _four_ five __six__ seven _eight_.
+
+1. One
+2. Two
+3. Three
+
+More text with \`inline($code)\` sample.
+
+> A block quote
+> across two lines.
+
+More text...
+
+\`\`\`
+const pane = new Tweakpane.Pane();
+pane.addButton({title: "test", label: "Button!"});
+\`\`\`
+
+Testing`,
+			border: false,    // TODO default false? could also change to adminition-style stuff, with colors
+			markdown: true,  // TODO default false
 		});
 		pane.addButton({title: "test", label: "Button!"});
 		pane.addSeparator();

@@ -1,6 +1,10 @@
 # Tweakpane plugin template
 Plugin template of an input binding for [Tweakpane][tweakpane].
 
+TODO obrien reference https://www.youtube.com/watch?v=XU-8Mh2iHEk
+TODO markdown styling not complete as my use case just involves basic text formatting - file an issue if you want more
+TODO re. markdown: recommend putting multiline into backtick strings, but any code snippets need escaping
+
 
 # For plugin developers
 TODO: Delete this section before publishing your plugin.
