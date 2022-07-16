@@ -3,37 +3,54 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
+	<style>
+		body {
+			margin: 20px;
+			height: 100vh;
+			background: linear-gradient(to bottom, #468, #888);
+		}
+		.tp-dfwv {
+			position: relative !important;
+			margin: auto;
+		}
+	</style>
 </head>
 <body>
 	<script src="../node_modules/tweakpane/dist/tweakpane.js"></script>
 	<script src="../dist/tweakpane-plugin-infodump.js"></script>
 	<script>
-		const pane = new Tweakpane.Pane();
+		const PARAMS = {
+			Warp: 9.2,
+			Distance: 80,
+		};
+
+		const pane = new Tweakpane.Pane({title: "A bunch of infodumps"});
 
 		// Register plugin
 		pane.registerPlugin(TweakpaneInfodumpPlugin);
 
 		// TODO: Update parameters for your plugin
-		pane.addButton({title: "test", label: "Button!"});
 		pane.addBlade({
 			view: "infodump",
-			content: "She's *flower units* about the **lad** herself. Major, lark's true pepper. Let birds go further loose maybe. Shout easy play. Round the turbulent quick. Well, close the reverse harbor. Ankle try sound. Reset gleaming. Dinner to bug. When? Strike limits flame the dark true salt. Way link complete. Way link! Victory strike limits frosted wake. Simple hesitation!",
-			border: false,    // TODO default false? could also change to adminition-style stuff, with colors
-			markdown: true,  // TODO default false
+			content: "Lorem ipsum is tired, hence...\n\nShe's flower units about the lad herself. Major, lark's true pepper. Let birds go further loose maybe. Shout easy play. *Round the turbulent quick.* Well, close the reverse harbor. **Ankle try sound.** Reset gleaming. ~~Dinner to bug.~~ When? Strike limits flame the dark true salt. Way link complete. [Way link!](https://noahdoersing.com) Victory strike limits frosted wake. Simple hesitation!",
+			markdown: true,
 		});
+		pane.addInput(PARAMS, 'Warp', {
+			step: 0.1,
+		});
+		pane.addInput(PARAMS, 'Distance', {
+			step: 10,
+			min: 0,
+			max: 100,
+		});
+		pane.addButton({label: "Engage?", title: "Make it so!"});
 		pane.addBlade({
 			view: "infodump",
-			content: "Short text.",
-			border: true,    // TODO default false? could also change to adminition-style stuff, with colors
-			markdown: true,  // TODO default false
+			content: "Here's an infodump with a border and *no Markdown* parsing.",
+			border: true,
+			markdown: false,
 		});
-		pane.addBlade({
-			view: "infodump",
-			content: "She's flower units about the lad herself. Major, lark's true pepper. Let birds go further loose maybe. Shout easy play. Round the turbulent quick. Well, close the reverse harbor. Ankle try sound. Reset gleaming. Dinner to bug. When? Strike limits flame the dark true salt. Way link complete. Way link! Victory strike limits frosted wake. Simple hesitation!",
-			border: true,    // TODO default false? could also change to adminition-style stuff, with colors
-			markdown: false,  // TODO default false
-		});
-		pane.addBlade({
+		/*pane.addBlade({
 			view: "infodump",
 			content: `# A longer example
 
@@ -43,9 +60,9 @@ And *now* [a link](http://www.google.com) to **follow** and [another](http://yah
 * Two
 * Three
 
-## Subhead
+## Subhea
 
-One **two** three **four** five.
+One **two** three **four** five.<b>d</b>
 
 One __two__ three _four_ five __six__ seven _eight_.
 
@@ -66,13 +83,10 @@ pane.addButton({title: "test", label: "Button!"});
 \`\`\`
 
 Testing`,
-			border: false,    // TODO default false? could also change to adminition-style stuff, with colors
-			markdown: true,  // TODO default false
+			border: false,
+			markdown: true,
 		});
-		pane.addButton({title: "test", label: "Button!"});
-		pane.addSeparator();
-		pane.addButton({title: "test", label: "Button!"});
-		pane.addButton({title: "test", label: "Button!"});
+		*/
 
 		window.pane = pane;
 	</script>

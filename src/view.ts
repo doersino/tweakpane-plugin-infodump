@@ -21,7 +21,6 @@ export class InfodumpView implements View {
 		this.element.classList.add(className());
 		if (config.border) {
 			this.element.classList.add(classNameBorder());
-			//this.element.style.height = `calc(${config.lineCount} * var(--bld-us))`;
 		}
 		config.viewProps.bindClassModifiers(this.element);
 

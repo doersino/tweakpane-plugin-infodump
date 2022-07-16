@@ -5,22 +5,27 @@
 // You can use CSS variables for styling. See declarations for details:
 // ../../node_modules/@tweakpane/core/lib/sass/common/_defs.scss
 .#{$prefix}-induv {
+	position: relative; // to make border work
+
+	// same as .tp-lblv (= labels for all tweaks)
 	align-items: center;
 	display: flex;
-	position: relative;
+	line-height: 1.3;
 	padding-left: var(--cnt-h-p);
 	padding-right: var(--cnt-h-p);
-	line-height: 1.3; // same as .tp-lblv (= labels for all tweaks)
 
 	&.#{$prefix}-v-disabled {
 		opacity: 0.5;
 	}
 
 	.#{$prefix}-induv_t {
-		box-sizing: border-box;
-		color: var(--mo-fg);
+		color: var(--lbl-fg);
 		flex: 1;
-		padding: 4px;
+		-webkit-hyphens: auto;
+		-ms-hyphens: auto;
+		hyphens: auto;
+		padding: 2px 4px 2px;
+		width: 1px;  // hack to make it not expand the pane infinitely
 
 		// markdown styles
 		& > *:first-child {
