@@ -41,8 +41,8 @@ export const TemplateInputPlugin: InputBindingPlugin<
 	// See rollup.config.js for details
 	css: '__css__',
 
-	accept(exValue: unknown, params: Record<string, unknown>) {
-		if (typeof exValue !== 'number') {
+	accept(exValue: unknown, params: Record<number, unknown>) {
+		if (typeof exValue !== 'string') {
 			// Return null to deny the user input
 			return null;
 		}
@@ -70,9 +70,9 @@ export const TemplateInputPlugin: InputBindingPlugin<
 
 	binding: {
 		reader(_args) {
-			return (exValue: unknown): number => {
+			return (exValue: unknown): string => {
 				// Convert an external unknown value into the internal value
-				return typeof exValue === 'number' ? exValue : 0;
+				return typeof exValue === 'string' ? exValue : "";
 			};
 		},
 
