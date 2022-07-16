@@ -1,6 +1,6 @@
 # tweakpane-plugin-infodump
 
-Infodump plugin for Tweakpane. Provides a blade that displays text, optionally with a border and basic Markdown support. Intended for long descriptions (*i.e.*, infodumps) that wouldn't fit into labels.
+Infodump plugin for [Tweakpane](https://cocopon.github.io/tweakpane/). Provides a blade that displays text, optionally with a border and basic Markdown support. Intended for long descriptions (*i.e.*, infodumps) that wouldn't fit into labels.
 
 ![](screenshot.png)
 <sup>That text is, as you might have guessed based on the controls below, a [Star Trek reference](https://www.youtube.com/watch?v=XU-8Mh2iHEk).</sup>
