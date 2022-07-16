@@ -12,7 +12,7 @@ import {InfodumpController} from './controller';
 export interface InfodumpBladeParams extends BaseBladeParams {
 	lineCount?: number;
 	title: string;
-	view: 'placeholder';  // TODO change
+	view: 'infodump';
 }
 
 // NOTE: You can see JSDoc comments of `InputBindingPlugin` for details about each property
@@ -23,7 +23,7 @@ export interface InfodumpBladeParams extends BaseBladeParams {
 // - P is the type of the parsed parameters
 //
 export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
-	id: 'placeholder',
+	id: 'infodump',
 
 	// type: The plugin type.
 	// - 'input': Input binding
@@ -39,7 +39,7 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 		const r = parseParams(params, {
 			lineCount: p.optional.number,
 			title: p.required.string,
-			view: p.required.constant('placeholder'),  // TODO change
+			view: p.required.constant('infodump'),
 		});
 		return r ? {params: r} : null;
 	},
