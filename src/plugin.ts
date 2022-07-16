@@ -37,6 +37,7 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 
 	// TODO transfer more comments from below
 	accept(params) {
+		// Parse parameters object
 		const p = ParamsParsers;
 		const r = parseParams(params, {
 			border: p.optional.boolean,
@@ -48,6 +49,7 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 	},
 
 	controller(args) {
+		// Create a controller for the plugin
 		return new InfodumpController(args.document, {
 			border: args.params.border ?? false,
 			content: args.params.content,
@@ -63,96 +65,3 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 		return new BladeApi(args.controller);
 	},
 };
-
-
-
-
-
-
-
-/*
-export const TemplateInputPlugin: InputBindingPlugin<
-	number,
-	number,
-	PluginInputParams
-> = {
-	id: 'input-template',
-
-	// type: The plugin type.
-	// - 'input': Input binding
-	// - 'monitor': Monitor binding
-	type: 'input',
-
-	// This plugin template injects a compiled CSS by @rollup/plugin-replace
-	// See rollup.config.js for details
-	css: '__css__',
-
-	accept(exValue: unknown, params: Record<number, unknown>) {
-		if (typeof exValue !== 'string') {
-			// Return null to deny the user input
-			return null;
-		}
-
-		// Parse parameters object
-		const p = ParamsParsers;
-		const result = parseParams<PluginInputParams>(params, {
-			// `view` option may be useful to provide a custom control for primitive values
-			view: p.required.constant('dots'),
-
-			max: p.optional.number,
-			min: p.optional.number,
-			step: p.optional.number,
-		});
-		if (!result) {
-			return null;
-		}
-
-		// Return a typed value and params to accept the user input
-		return {
-			initialValue: exValue,
-			params: result,
-		};
-	},
-
-	binding: {
-		reader(_args) {
-			return (exValue: unknown): string => {
-				// Convert an external unknown value into the internal value
-				return typeof exValue === 'string' ? exValue : "";
-			};
-		},
-
-		constraint(args) {
-			// Create a value constraint from the user input
-			const constraints = [];
-			// You can reuse existing functions of the default plugins
-			const cr = createRangeConstraint(args.params);
-			if (cr) {
-				constraints.push(cr);
-			}
-			const cs = createStepConstraint(args.params);
-			if (cs) {
-				constraints.push(cs);
-			}
-			// Use `CompositeConstraint` to combine multiple constraints
-			return new CompositeConstraint(constraints);
-		},
-
-		writer(_args) {
-			return (target: BindingTarget, inValue) => {
-				// Use `target.write()` to write the primitive value to the target,
-				// or `target.writeProperty()` to write a property of the target
-				target.write(inValue);
-			};
-		},
-	},
-
-	controller(args) {
-		// Create a controller for the plugin
-		return new PluginController(args.document, {
-			value: args.value,
-			viewProps: args.viewProps,
-		});
-	},
-};
-*/
