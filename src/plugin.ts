@@ -21,38 +21,38 @@ export interface InfodumpBladeParams extends BaseBladeParams {
 // - converts `Ex` into `In` and holds it
 // - P is the type of the parsed parameters
 //
-export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = createPlugin({
-	id: 'infodump',
+export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> =
+	createPlugin({
+		id: 'infodump',
 
-	// type: The plugin type.
-	// - 'input': Input binding
-	// - 'monitor': Monitor binding
-	type: 'blade',
+		// type: The plugin type.
+		// - 'input': Input binding
+		// - 'monitor': Monitor binding
+		type: 'blade',
 
-	accept(params: Record<string, unknown>) {
+		accept(params: Record<string, unknown>) {
+			// Parse parameters object
+			const r = parseRecord(params, (p) => ({
+				content: p.required.string,
+				markdown: p.optional.boolean,
+				view: p.required.constant('infodump'),
+			}));
+			return r ? {params: r} : null;
+		},
 
-		// Parse parameters object
-		const r = parseRecord(params, (p) => ({
-			content: p.required.string,
-			markdown: p.optional.boolean,
-			view: p.required.constant('infodump'),
-		}));
-		return r ? {params: r} : null;
-	},
+		controller(args) {
+			// Create a controller for the plugin
+			return new InfodumpController(args.document, {
+				content: args.params.content,
+				markdown: args.params.markdown ?? false,
+				viewProps: args.viewProps,
+			});
+		},
 
-	controller(args) {
-		// Create a controller for the plugin
-		return new InfodumpController(args.document, {
-			content: args.params.content,
-			markdown: args.params.markdown ?? false,
-			viewProps: args.viewProps,
-		});
-	},
-
-	api(args) {
-		if (!(args.controller instanceof InfodumpController)) {
-			return null;
-		}
-		return new BladeApi(args.controller);
-	},
-});
+		api(args) {
+			if (!(args.controller instanceof InfodumpController)) {
+				return null;
+			}
+			return new BladeApi(args.controller);
+		},
+	});

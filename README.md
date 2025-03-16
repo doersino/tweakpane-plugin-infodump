@@ -7,7 +7,7 @@ This is an *infodump* plugin for [Tweakpane](https://cocopon.github.io/tweakpane
 
 This implementation is heavily based on the [placeholder blade from the Tweakpane docs](https://github.com/cocopon/tweakpane/blob/a4786be6dae7cad58dbbfe2f047ca097954c4f1f/packages/tweakpane/src/doc/ts/placeholder-plugin.ts) as mentioned in [this issue](https://github.com/cocopon/tweakpane/issues/397).
 
-**Note:** Version [v0.3.0](https://github.com/doersino/tweakpane-plugin-infodump/releases/tag/v0.3.0) and prior are compatible with Tweakpane 3.x. Newer versions follow the Tweakpane versioning (*e.g.*, [v4.0.0](https://github.com/doersino/tweakpane-plugin-infodump/releases/tag/v4.0.0) is [compatible with](https://github.com/cocopon/tweakpane/issues/396#issuecomment-1418929095) Tweakpane 4.0.0 and subsequent minor releases).
+**Note:** Version [v0.3.0](https://github.com/doersino/tweakpane-plugin-infodump/releases/tag/v0.3.0) and prior are compatible with Tweakpane 3.x. Newer versions match Tweakpane major versions (*e.g.*, [v4.0.0](https://github.com/doersino/tweakpane-plugin-infodump/releases/tag/v4.0.0) is [compatible with](https://github.com/cocopon/tweakpane/issues/396#issuecomment-1418929095) Tweakpane 4.0.0 and subsequent minor releases) but minor/patch versions may differ (due to bug fixes and improvements both here and there).
 
 ## Installation
 
@@ -18,19 +18,41 @@ Download the most recent release from [here](https://github.com/doersino/tweakpa
 ```html
 <script type="module">
   import {Pane} from 'tweakpane.js';
-    import * as InfodumpPlugin from 'tweakpane-plugin-infodump.js';
+  import * as InfodumpPlugin from 'tweakpane-plugin-infodump.js';
 
   const pane = new Pane();
   pane.registerPlugin(InfodumpPlugin);
 </script>
 ```
 
+You can also dynamically load the latest...
+
+```js
+import * as InfodumpPlugin from 'https://unpkg.com/tweakpane-plugin-infodump';
+```
+
+...or a fixed...
+
+```js
+import * as InfodumpPlugin from 'https://unpkg.com/tweakpane-plugin-infodump@4.0.1/dist/tweakpane-plugin-infodump.js';
+```
+
+...version via [UNPKG](https://unpkg.com).
+
 
 ### Package
 
+You can install with `npm`:
+
+```
+npm install tweakpane-plugin-file-import
+```
+
+And import it like so.
+
 ```js
 import {Pane} from 'tweakpane';
-import * as InfodumpPlugin from 'doersino/tweakpane-plugin-infodump';
+import * as InfodumpPlugin from 'tweakpane-plugin-infodump';
 
 const pane = new Pane();
 pane.registerPlugin(InfodumpPlugin);
@@ -80,7 +102,7 @@ Clone this repository, then:
   $ npm run assets
   ```
 
-  Then upload the resulting ZIP file to GitHub.
+  Then `git push` the current state of the code, upload the resulting ZIP file to GitHub (create a release with tag etc., name like "v4.0.0"), and don't forget to run `npm publish`.
 
 
 ### File structure
