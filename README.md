@@ -37,7 +37,7 @@ import * as InfodumpPlugin from 'https://unpkg.com/tweakpane-plugin-infodump';
 import * as InfodumpPlugin from 'https://unpkg.com/tweakpane-plugin-infodump@4.0.1/dist/tweakpane-plugin-infodump.js';
 ```
 
-...version via [UNPKG](https://unpkg.com).
+...version via [UNPKG](https://unpkg.com) if you're just quickly testing something (personally, I don't trust services like that for permanent, let alone production, use).
 
 
 ### Package
