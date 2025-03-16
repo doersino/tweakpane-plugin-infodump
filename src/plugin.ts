@@ -2,14 +2,13 @@ import {
 	BaseBladeParams,
 	BladeApi,
 	BladePlugin,
-	ParamsParsers,
-	parseParams,
+	createPlugin,
+	parseRecord,
 } from '@tweakpane/core';
 
 import {InfodumpController} from './controller';
 
 export interface InfodumpBladeParams extends BaseBladeParams {
-	border?: boolean;
 	content: string;
 	markdown?: boolean;
 	view: 'infodump';
@@ -22,7 +21,7 @@ export interface InfodumpBladeParams extends BaseBladeParams {
 // - converts `Ex` into `In` and holds it
 // - P is the type of the parsed parameters
 //
-export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
+export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = createPlugin({
 	id: 'infodump',
 
 	// type: The plugin type.
@@ -30,26 +29,20 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 	// - 'monitor': Monitor binding
 	type: 'blade',
 
-	// This plugin template injects a compiled CSS by @rollup/plugin-replace
-	// See rollup.config.js for details
-	css: '__css__',
+	accept(params: Record<string, unknown>) {
 
-	accept(params) {
 		// Parse parameters object
-		const p = ParamsParsers;
-		const r = parseParams(params, {
-			border: p.optional.boolean,
+		const r = parseRecord(params, (p) => ({
 			content: p.required.string,
 			markdown: p.optional.boolean,
 			view: p.required.constant('infodump'),
-		});
+		}));
 		return r ? {params: r} : null;
 	},
 
 	controller(args) {
 		// Create a controller for the plugin
 		return new InfodumpController(args.document, {
-			border: args.params.border ?? false,
 			content: args.params.content,
 			markdown: args.params.markdown ?? false,
 			viewProps: args.viewProps,
@@ -62,4 +55,4 @@ export const TweakpaneInfodumpPlugin: BladePlugin<InfodumpBladeParams> = {
 		}
 		return new BladeApi(args.controller);
 	},
-};
+});

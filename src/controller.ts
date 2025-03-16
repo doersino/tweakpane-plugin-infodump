@@ -3,7 +3,6 @@ import {BladeController, createBlade, ViewProps} from '@tweakpane/core';
 import {InfodumpView} from './view';
 
 interface Config {
-	border: boolean;
 	content: string;
 	markdown: boolean;
 	viewProps: ViewProps;

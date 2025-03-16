@@ -1,24 +1,24 @@
 // Import core styles
-@import '../../node_modules/@tweakpane/core/lib/sass/plugin';
+@use '../../node_modules/@tweakpane/core/lib/sass/tp';
 
 // Additional style for the plugin
 // You can use CSS variables for styling. See declarations for details:
 // ../../node_modules/@tweakpane/core/lib/sass/common/_defs.scss
-.#{$prefix}-induv {
+.#{tp.$prefix}-induv {
 	position: relative; // to make border work
 
 	// same as .tp-lblv (= labels for all tweaks)
 	align-items: center;
 	display: flex;
 	line-height: 1.3;
-	padding-left: var(--cnt-h-p);
-	padding-right: var(--cnt-h-p);
+	padding-left: var(--cnt-hp);
+	padding-right: var(--cnt-hp);
 
-	&.#{$prefix}-v-disabled {
+	&.#{tp.$prefix}-v-disabled {
 		opacity: 0.5;
 	}
 
-	.#{$prefix}-induv_t {
+	.#{tp.$prefix}-induv_t {
 		color: var(--lbl-fg);
 		flex: 1;
 		-webkit-hyphens: auto;
@@ -76,16 +76,4 @@
 			padding-left: 28px;
 		}
 	}
-}
-
-.#{$prefix}-indubv::before {
-	border: var(--mo-fg) dashed 1px;
-	border-radius: var(--elm-br);
-	bottom: 0;
-	content: '';
-	left: var(--cnt-v-p);
-	opacity: 0.3;
-	position: absolute;
-	right: var(--cnt-v-p);
-	top: 0;
 }

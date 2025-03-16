@@ -7,6 +7,8 @@ This is an *infodump* plugin for [Tweakpane](https://cocopon.github.io/tweakpane
 
 This implementation is heavily based on the [placeholder blade from the Tweakpane docs](https://github.com/cocopon/tweakpane/blob/a4786be6dae7cad58dbbfe2f047ca097954c4f1f/packages/tweakpane/src/doc/ts/placeholder-plugin.ts) as mentioned in [this issue](https://github.com/cocopon/tweakpane/issues/397).
 
+**Note:** Version [v0.3.0](https://github.com/doersino/tweakpane-plugin-infodump/releases/tag/v0.3.0) and prior are compatible with Tweakpane 3.x. Newer versions follow the Tweakpane versioning (*e.g.*, [v4.0.0](https://github.com/doersino/tweakpane-plugin-infodump/releases/tag/v4.0.0) is [compatible with](https://github.com/cocopon/tweakpane/issues/396#issuecomment-1418929095) Tweakpane 4.0.0 and subsequent minor releases).
+
 ## Installation
 
 ### Browser
@@ -14,11 +16,12 @@ This implementation is heavily based on the [placeholder blade from the Tweakpan
 Download the most recent release from [here](https://github.com/doersino/tweakpane-plugin-infodump/releases).
 
 ```html
-<script src="tweakpane.min.js"></script>
-<script src="tweakpane-plugin-infodump.min.js"></script>
-<script>
-  const pane = new Tweakpane.Pane();
-  pane.registerPlugin(TweakpaneInfodumpPlugin);
+<script type="module">
+  import {Pane} from 'tweakpane.js';
+    import * as InfodumpPlugin from 'tweakpane-plugin-infodump.js';
+
+  const pane = new Pane();
+  pane.registerPlugin(InfodumpPlugin);
 </script>
 ```
 
@@ -40,12 +43,11 @@ pane.registerPlugin(InfodumpPlugin);
 pane.addBlade({
   view: "infodump",
   content: "Major, lark's true pepper. Let birds go further loose maybe. Shout easy play.",
-  border: false,
   markdown: false,
 });
 ```
 
-Both the `border` and `markdown` switches are `false` by default, so you wouldn't need to specify them in this example.
+The `markdown` switch is `false` by default, so you wouldn't need to specify it in this example.
 
 Markdown compilation is provided by the [slimdown-js](https://github.com/erikvullings/slimdown-js) package – a very lightweight and hence not entirely-spec-compliant Markdown parser which may or may not lead to issues when going beyond basic text formatting (for this reason, I haven't included CSS rules covering every possible Markdown construct – [file an issue](https://github.com/doersino/tweakpane-plugin-infodump/issues) if you'd like improvements here.)
 
@@ -70,7 +72,7 @@ Clone this repository, then:
   $ npm start
   ```
 
-* Open `test/browser.html` to see the result.
+* Alternatively, open `test/browser.html` to see the result (due to restrictions regarding JavaScript modules when serving directly from the file system, you might need to run `http-server` in the root directory of your clone, then go to `http://localhost:8080/test/browser.html`).
 
 * Cutting a release:
 
@@ -94,6 +96,3 @@ Clone this repository, then:
 `- test
    `- browser.html .... Plugin lab
 ```
-
-
-

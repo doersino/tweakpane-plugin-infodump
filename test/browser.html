@@ -16,18 +16,19 @@
 	</style>
 </head>
 <body>
-	<script src="../node_modules/tweakpane/dist/tweakpane.js"></script>
-	<script src="../dist/tweakpane-plugin-infodump.js"></script>
-	<script>
+	<script type="module">
+		import {Pane} from '../node_modules/tweakpane/dist/tweakpane.js';
+		import * as InfodumpPlugin from '../dist/tweakpane-plugin-infodump.js';
+
 		const PARAMS = {
 			Warp: 9.2,
 			Distance: 80,
 		};
 
-		const pane = new Tweakpane.Pane({title: "A bunch of infodumps"});
+		const pane = new Pane({title: "A bunch of infodumps"});
 
 		// Register plugin
-		pane.registerPlugin(TweakpaneInfodumpPlugin);
+		pane.registerPlugin(InfodumpPlugin);
 
 		// TODO: Update parameters for your plugin
 		pane.addBlade({
@@ -35,19 +36,21 @@
 			content: "Lorem ipsum is tired, hence...\n\nShe's flower units about the lad herself. Major, lark's true pepper. Let birds go further loose maybe. Shout easy play. *Round the turbulent quick.* Well, close the reverse harbor. **Ankle try sound.** Reset gleaming. ~~Dinner to bug.~~ When? Strike limits flame the dark true salt. Way link complete. [Way link!](https://noahdoersing.com) Victory strike limits frosted wake. Simple hesitation!",
 			markdown: true,
 		});
-		pane.addInput(PARAMS, 'Warp', {
+		pane.addBinding(PARAMS, 'Warp', {
 			step: 0.1,
 		});
-		pane.addInput(PARAMS, 'Distance', {
+		pane.addBinding(PARAMS, 'Distance', {
 			step: 10,
 			min: 0,
 			max: 100,
 		});
 		pane.addButton({label: "Engage?", title: "Make it so!"});
 		pane.addBlade({
+			view: 'separator',
+		});
+		pane.addBlade({
 			view: "infodump",
-			content: "Here's an infodump with a border and *no Markdown* parsing.",
-			border: true,
+			content: "Here's an infodump *without* Markdown parsing.",
 			markdown: false,
 		});
 		/*pane.addBlade({
