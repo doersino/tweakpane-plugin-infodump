@@ -45,7 +45,7 @@ import * as InfodumpPlugin from 'https://unpkg.com/tweakpane-plugin-infodump@4.0
 You can install with `npm`:
 
 ```
-npm install tweakpane-plugin-file-import
+npm install tweakpane-plugin-infodump
 ```
 
 And import it like so.
